@@ -1,0 +1,98 @@
+:root {
+  --speed: 5s;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+#score-and-speed {
+  box-shadow: 0px 2px 47px -14px rgba(0,0,0,0.75);
+  position: fixed;
+  background-color: white;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#score {
+  font-size: 3em;
+  margin: 0;
+  color: red;
+}
+
+#countdown {
+  font-size: 1.2em;
+  color: red;
+}
+
+.difficulty-meter {
+  background: linear-gradient(to right, green, yellow, red);
+  width: 90%;
+  height: 10px;
+  border-radius: 5px;
+}
+
+.speed {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.speed input{
+  display: block;
+  width: 90%;
+}
+
+.buttons {
+  align-self: center;
+}
+
+button {
+  border-radius: 5px;
+  padding: 1em;
+  color: white;
+  background-color: #C8C8C8;
+  margin: 1em;
+}
+
+button:focus {
+  border: none;
+  outline: 1px solid #fff;
+}
+
+#bubble-zone {
+  background-image: linear-gradient(yellow, red, purple);
+
+  height: 100vh;
+  position: inherit;
+}
+
+.bubble {
+  border-radius: 50%;
+  position: absolute;
+}
+
+.cloud-1 {
+  position: relative;
+  top: 400px;
+  left: 100px;
+  width: 400px;
+  opacity: 0.3;
+}
+
+.cloud-2 {
+  position: relative;
+  top: 300px;
+  left: 350px;
+  width: 500px;
+  opacity: 0.5;
+  transform: rotate(180deg);
+}

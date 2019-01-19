@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dot Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../public/style.css">
+</head>
+<body>
+  <section id="score-and-speed">
+    <p id="score">
+      0
+    </p>
+    <p>SCORE</p>
+    <div class="speed">
+      <input type="range" min="1" max="100" value="50" class="slider" id="speedRange" onChange="speedHandler(event)">
+      <div class="difficulty-meter"></div>
+      <p>SPEED</p>
+      <!-- <div id="currentSpeed">30</div> -->
+    </div>
+    <div class="buttons">
+      <button onClick="startGame()">START GAME</button>
+      <button onClick="stopGame()">STOP</button>
+      <progress  value="0" max="10" id="countdown"></progress>
+    </div>
+  </section>
+  <section id="bubble-zone">
+    <img class="cloud-1" src="../public/cloud1.svg" alt="Cloud"/>
+    <img class="cloud-2" src="../public/cloud1.svg" alt="Cloud"/>
+  </section>
+  <script src="../public/index.js"></script>
+</body>
+</html>
