@@ -1,14 +1,15 @@
 let viewportHeight = window.innerHeight;
 let viewportWidth = window.innerWidth;
+let scoreAndSpeedContainerHeight = document.getElementById("score-and-speed").offsetHeight;
+let modal = document.getElementById("modal");
 let speed = 50;
 let timeLeft;
 let downloadTimer;
-let scoreAndSpeedContainerHeight = document.getElementById("score-and-speed").offsetHeight;
-let modal = document.getElementById("modal");
 let score = 0;
 let started = false;
 var gameplay;
 let bubbleAnimations = [];
+let mobile = window.matchMedia("(max-width: 600px)")
 
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
@@ -35,6 +36,7 @@ function changeAllSpeeds(newRate) {
 }
 
 function onAnimationEnd(event) {
+  console.log("removed bubble");
   let bubble = event.currentTarget;
   bubble.parentNode.removeChild(bubble);
 }
@@ -48,11 +50,10 @@ function onClick(event) {
   generateBubble();
 }
 
-function close(event) {
-  console.log("clicked");
-  modal.style.display = "none";
-  started = false;
-}
+// function close(event) {
+//   modal.style.display = "none";
+//   started = false;
+// }
 
 window.onclick = function(event) {
   if (event.target == modal) {
@@ -60,6 +61,13 @@ window.onclick = function(event) {
     started = false;
   }
 }
+
+window.ontouchstart = function(event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+    started = false;
+  }
+};
 
 function generateBubble() {
   let bubble = document.createElement("div");
@@ -77,7 +85,10 @@ function generateBubble() {
       easing: 'linear',
       duration: 5000
     });
-    newBubble.playbackRate = speed / 100;
+  newBubble.onfinish = function() {
+    bubble.remove();
+  }
+  newBubble.playbackRate = speed / 100;
   bubbleAnimations.push(newBubble);
   bubble.setAttribute("onClick", "onClick(event)");
   bubble.setAttribute("onAnimationEnd", "onAnimationEnd(event)");
@@ -104,7 +115,7 @@ function startGame() {
     gamePlay = setInterval(generateBubble, 1000);
     let rangeInput = document.getElementById("speedRange");
     rangeInput.value = speed;
-    timeLeft = 3;
+    timeLeft = 10;
     downloadTimer = setInterval(() => {
       timeLeft--;
       document.getElementById("countdown").value = timeLeft;
@@ -113,12 +124,9 @@ function startGame() {
         clearInterval(downloadTimer);
         stopGame();
       }}, 1000);
-    // let currentSpeedContainer = document.getElementById("currentSpeed");
-    // currentSpeedContainer.innerText = speed;
   }
 
 }
-
-window.onload = function() {
-  // console.log(findKeyframesRule("moveDown"));
-};
+//
+// window.onload = function() {
+// };
