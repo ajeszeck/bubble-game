@@ -9,7 +9,6 @@ let score = 0;
 let started = false;
 var gameplay;
 let bubbleAnimations = [];
-let mobile = window.matchMedia("(max-width: 600px)")
 
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
@@ -24,8 +23,6 @@ function horizontalPosition(pageWidth, bubbleDimensions) {
 function speedHandler(event) {
   event.preventDefault();
   speed = event.currentTarget.value;
-  // let currentSpeedContainer = document.getElementById("currentSpeed");
-  // currentSpeedContainer.innerText = speed / 100;
   changeAllSpeeds(speed / 100);
 }
 
@@ -41,7 +38,7 @@ function onAnimationEnd(event) {
   bubble.parentNode.removeChild(bubble);
 }
 
-function onClick(event) {
+function pop(event) {
   let bubble = event.currentTarget;
   score += parseInt(bubble.getAttribute("points"));
   bubble.parentNode.removeChild(bubble);
@@ -49,11 +46,6 @@ function onClick(event) {
   scoreContainer.innerText = score;
   generateBubble();
 }
-
-// function close(event) {
-//   modal.style.display = "none";
-//   started = false;
-// }
 
 window.onclick = function(event) {
   if (event.target == modal) {
@@ -90,7 +82,7 @@ function generateBubble() {
   }
   newBubble.playbackRate = speed / 100;
   bubbleAnimations.push(newBubble);
-  bubble.setAttribute("onClick", "onClick(event)");
+  bubble.setAttribute("onclick", "pop(event)");
   bubble.setAttribute("onAnimationEnd", "onAnimationEnd(event)");
   bubble.setAttribute("points", `${Math.round(100 / bubbleDimensions)}`);
   bubble.classList.add("bubble");
@@ -125,8 +117,4 @@ function startGame() {
         stopGame();
       }}, 1000);
   }
-
 }
-//
-// window.onload = function() {
-// };

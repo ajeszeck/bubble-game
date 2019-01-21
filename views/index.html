@@ -10,7 +10,6 @@
 <body>
   <div id="modal">
     <div class="modal-content">
-      <!-- <span id="close-button" onClick="close(event)">&times;</span> -->
       <p id="final-score"></p>
     </div>
   </div>
@@ -23,11 +22,9 @@
       <input type="range" min="1" max="100" value="50" class="slider" id="speedRange" onChange="speedHandler(event)">
       <div class="difficulty-meter"></div>
       <p>DIFFICULTY</p>
-      <!-- <div id="currentSpeed">30</div> -->
     </div>
     <div class="buttons">
       <button onClick="startGame()">START GAME</button>
-      <!-- <button onClick="stopGame()">STOP</button> -->
     </div>
     <div class="countdown-container">
       <progress value="0" max="10" id="countdown"></progress>
